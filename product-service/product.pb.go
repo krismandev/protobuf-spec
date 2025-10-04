@@ -4,7 +4,7 @@
 // 	protoc        v3.12.4
 // source: product-service/product.proto
 
-package product_service
+package productpb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -201,7 +201,7 @@ const file_product_service_product_proto_rawDesc = "" +
 	"\x13GetProductsResponse\x12,\n" +
 	"\bproducts\x18\x01 \x03(\v2\x10.product.ProductR\bproducts2Z\n" +
 	"\x0eProductService\x12H\n" +
-	"\vGetProducts\x12\x1b.product.GetProductsRequest\x1a\x1c.product.GetProductsResponseB\x12Z\x10product-service/b\x06proto3"
+	"\vGetProducts\x12\x1b.product.GetProductsRequest\x1a\x1c.product.GetProductsResponseB\x1cZ\x1a/product-service;productpbb\x06proto3"
 
 var (
 	file_product_service_product_proto_rawDescOnce sync.Once

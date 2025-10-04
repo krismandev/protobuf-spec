@@ -4,7 +4,7 @@
 // - protoc             v3.12.4
 // source: product-service/product.proto
 
-package product_service
+package productpb
 
 import (
 	context "context"

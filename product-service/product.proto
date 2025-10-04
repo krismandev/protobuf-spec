@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package product;
 
-option go_package = "product-service/";
+option go_package = "/product-service;productpb";
 
 message Product {
     string id = 1;
