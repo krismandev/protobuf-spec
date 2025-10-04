@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package product;
 
-option go_package = "/product-service;productpb";
+option go_package = "github.com/krismandev/protobuf-spec/product-service;productpb";
 
 message Product {
     string id = 1;
