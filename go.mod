@@ -3,6 +3,7 @@ module github.com/krismandev/protobuf-spec
 go 1.24.6
 
 require (
+	github.com/golang/protobuf v1.5.4
 	google.golang.org/grpc v1.75.1
 	google.golang.org/protobuf v1.36.10
 )
