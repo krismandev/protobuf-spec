@@ -4,23 +4,29 @@ package product;
 
 option go_package = "github.com/krismandev/protobuf-spec/product-service;productpb";
 
+import "common/types.proto";
 message Product {
     string id = 1;
     string name = 2;
     string description = 3;
-    double price = 4;
+    string owner_type = 4;
+    string owner_id = 5;
+    string featured_image = 6;
+    string has_variants = 7;
+    double price = 8;
+    string created_at = 9;
+    string updated_at = 10;
+
 }
 
 
 message GetProductsRequest {
-    int32 page = 1;
-    int32 size = 2;
-    string name = 3;
-    string owner_id = 4;
-    
+    common.GlobalListDataRequest globalListRequest = 1;
+    string name = 4;
+    string owner_id = 5;
 }
 message GetProductsResponse {
-    repeated Product products = 1;
+    common.GlobalListResponse globalListResponse = 1;
 }
 
 service ProductService {

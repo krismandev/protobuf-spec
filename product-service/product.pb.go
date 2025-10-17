@@ -7,6 +7,7 @@
 package productpb
 
 import (
+	common "github.com/krismandev/protobuf-spec/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -26,7 +27,13 @@ type Product struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	Price         float64                `protobuf:"fixed64,4,opt,name=price,proto3" json:"price,omitempty"`
+	OwnerType     string                 `protobuf:"bytes,4,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,5,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	FeaturedImage string                 `protobuf:"bytes,6,opt,name=featured_image,json=featuredImage,proto3" json:"featured_image,omitempty"`
+	HasVariants   string                 `protobuf:"bytes,7,opt,name=has_variants,json=hasVariants,proto3" json:"has_variants,omitempty"`
+	Price         float64                `protobuf:"fixed64,8,opt,name=price,proto3" json:"price,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     string                 `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -82,6 +89,34 @@ func (x *Product) GetDescription() string {
 	return ""
 }
 
+func (x *Product) GetOwnerType() string {
+	if x != nil {
+		return x.OwnerType
+	}
+	return ""
+}
+
+func (x *Product) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *Product) GetFeaturedImage() string {
+	if x != nil {
+		return x.FeaturedImage
+	}
+	return ""
+}
+
+func (x *Product) GetHasVariants() string {
+	if x != nil {
+		return x.HasVariants
+	}
+	return ""
+}
+
 func (x *Product) GetPrice() float64 {
 	if x != nil {
 		return x.Price
@@ -89,14 +124,27 @@ func (x *Product) GetPrice() float64 {
 	return 0
 }
 
+func (x *Product) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *Product) GetUpdatedAt() string {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return ""
+}
+
 type GetProductsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
-	Size          int32                  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
-	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	OwnerId       string                 `protobuf:"bytes,4,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState        `protogen:"open.v1"`
+	GlobalListRequest *common.GlobalListDataRequest `protobuf:"bytes,1,opt,name=globalListRequest,proto3" json:"globalListRequest,omitempty"`
+	Name              string                        `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	OwnerId           string                        `protobuf:"bytes,5,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *GetProductsRequest) Reset() {
@@ -129,18 +177,11 @@ func (*GetProductsRequest) Descriptor() ([]byte, []int) {
 	return file_product_service_product_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetProductsRequest) GetPage() int32 {
+func (x *GetProductsRequest) GetGlobalListRequest() *common.GlobalListDataRequest {
 	if x != nil {
-		return x.Page
+		return x.GlobalListRequest
 	}
-	return 0
-}
-
-func (x *GetProductsRequest) GetSize() int32 {
-	if x != nil {
-		return x.Size
-	}
-	return 0
+	return nil
 }
 
 func (x *GetProductsRequest) GetName() string {
@@ -158,10 +199,10 @@ func (x *GetProductsRequest) GetOwnerId() string {
 }
 
 type GetProductsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Products      []*Product             `protobuf:"bytes,1,rep,name=products,proto3" json:"products,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState     `protogen:"open.v1"`
+	GlobalListResponse *common.GlobalListResponse `protobuf:"bytes,1,opt,name=globalListResponse,proto3" json:"globalListResponse,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *GetProductsResponse) Reset() {
@@ -194,9 +235,9 @@ func (*GetProductsResponse) Descriptor() ([]byte, []int) {
 	return file_product_service_product_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetProductsResponse) GetProducts() []*Product {
+func (x *GetProductsResponse) GetGlobalListResponse() *common.GlobalListResponse {
 	if x != nil {
-		return x.Products
+		return x.GlobalListResponse
 	}
 	return nil
 }
@@ -205,19 +246,28 @@ var File_product_service_product_proto protoreflect.FileDescriptor
 
 const file_product_service_product_proto_rawDesc = "" +
 	"\n" +
-	"\x1dproduct-service/product.proto\x12\aproduct\"e\n" +
+	"\x1dproduct-service/product.proto\x12\aproduct\x1a\x12common/types.proto\"\xa7\x02\n" +
 	"\aProduct\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x14\n" +
-	"\x05price\x18\x04 \x01(\x01R\x05price\"k\n" +
-	"\x12GetProductsRequest\x12\x12\n" +
-	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x12\n" +
-	"\x04size\x18\x02 \x01(\x05R\x04size\x12\x12\n" +
-	"\x04name\x18\x03 \x01(\tR\x04name\x12\x19\n" +
-	"\bowner_id\x18\x04 \x01(\tR\aownerId\"C\n" +
-	"\x13GetProductsResponse\x12,\n" +
-	"\bproducts\x18\x01 \x03(\v2\x10.product.ProductR\bproducts2Z\n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x1d\n" +
+	"\n" +
+	"owner_type\x18\x04 \x01(\tR\townerType\x12\x19\n" +
+	"\bowner_id\x18\x05 \x01(\tR\aownerId\x12%\n" +
+	"\x0efeatured_image\x18\x06 \x01(\tR\rfeaturedImage\x12!\n" +
+	"\fhas_variants\x18\a \x01(\tR\vhasVariants\x12\x14\n" +
+	"\x05price\x18\b \x01(\x01R\x05price\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\t \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\n" +
+	" \x01(\tR\tupdatedAt\"\x90\x01\n" +
+	"\x12GetProductsRequest\x12K\n" +
+	"\x11globalListRequest\x18\x01 \x01(\v2\x1d.common.GlobalListDataRequestR\x11globalListRequest\x12\x12\n" +
+	"\x04name\x18\x04 \x01(\tR\x04name\x12\x19\n" +
+	"\bowner_id\x18\x05 \x01(\tR\aownerId\"a\n" +
+	"\x13GetProductsResponse\x12J\n" +
+	"\x12globalListResponse\x18\x01 \x01(\v2\x1a.common.GlobalListResponseR\x12globalListResponse2Z\n" +
 	"\x0eProductService\x12H\n" +
 	"\vGetProducts\x12\x1b.product.GetProductsRequest\x1a\x1c.product.GetProductsResponseB?Z=github.com/krismandev/protobuf-spec/product-service;productpbb\x06proto3"
 
@@ -235,19 +285,22 @@ func file_product_service_product_proto_rawDescGZIP() []byte {
 
 var file_product_service_product_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_product_service_product_proto_goTypes = []any{
-	(*Product)(nil),             // 0: product.Product
-	(*GetProductsRequest)(nil),  // 1: product.GetProductsRequest
-	(*GetProductsResponse)(nil), // 2: product.GetProductsResponse
+	(*Product)(nil),                      // 0: product.Product
+	(*GetProductsRequest)(nil),           // 1: product.GetProductsRequest
+	(*GetProductsResponse)(nil),          // 2: product.GetProductsResponse
+	(*common.GlobalListDataRequest)(nil), // 3: common.GlobalListDataRequest
+	(*common.GlobalListResponse)(nil),    // 4: common.GlobalListResponse
 }
 var file_product_service_product_proto_depIdxs = []int32{
-	0, // 0: product.GetProductsResponse.products:type_name -> product.Product
-	1, // 1: product.ProductService.GetProducts:input_type -> product.GetProductsRequest
-	2, // 2: product.ProductService.GetProducts:output_type -> product.GetProductsResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	3, // 0: product.GetProductsRequest.globalListRequest:type_name -> common.GlobalListDataRequest
+	4, // 1: product.GetProductsResponse.globalListResponse:type_name -> common.GlobalListResponse
+	1, // 2: product.ProductService.GetProducts:input_type -> product.GetProductsRequest
+	2, // 3: product.ProductService.GetProducts:output_type -> product.GetProductsResponse
+	3, // [3:4] is the sub-list for method output_type
+	2, // [2:3] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_product_service_product_proto_init() }
