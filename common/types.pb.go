@@ -92,11 +92,13 @@ func (x *GlobalListDataRequest) GetOrderBy() string {
 }
 
 type GlobalListResponse struct {
-	state         protoimpl.MessageState  `protogen:"open.v1"`
-	Status        string                  `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	StatusCode    string                  `protobuf:"bytes,2,opt,name=statusCode,proto3" json:"statusCode,omitempty"`
-	Message       string                  `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
-	Data          *GlobalListDataResponse `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	OrderDir      string                 `protobuf:"bytes,4,opt,name=orderDir,proto3" json:"orderDir,omitempty"`
+	OrderBy       string                 `protobuf:"bytes,5,opt,name=orderBy,proto3" json:"orderBy,omitempty"`
+	Data          []*any1.Any            `protobuf:"bytes,6,rep,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -131,20 +133,6 @@ func (*GlobalListResponse) Descriptor() ([]byte, []int) {
 	return file_common_types_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GlobalListResponse) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
-}
-
-func (x *GlobalListResponse) GetStatusCode() string {
-	if x != nil {
-		return x.StatusCode
-	}
-	return ""
-}
-
 func (x *GlobalListResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
@@ -152,7 +140,35 @@ func (x *GlobalListResponse) GetMessage() string {
 	return ""
 }
 
-func (x *GlobalListResponse) GetData() *GlobalListDataResponse {
+func (x *GlobalListResponse) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GlobalListResponse) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GlobalListResponse) GetOrderDir() string {
+	if x != nil {
+		return x.OrderDir
+	}
+	return ""
+}
+
+func (x *GlobalListResponse) GetOrderBy() string {
+	if x != nil {
+		return x.OrderBy
+	}
+	return ""
+}
+
+func (x *GlobalListResponse) GetData() []*any1.Any {
 	if x != nil {
 		return x.Data
 	}
@@ -161,10 +177,8 @@ func (x *GlobalListResponse) GetData() *GlobalListDataResponse {
 
 type GlobalSingleResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	StatusCode    string                 `protobuf:"bytes,2,opt,name=statusCode,proto3" json:"statusCode,omitempty"`
-	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
-	Data          *any1.Any              `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Data          *any1.Any              `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -199,20 +213,6 @@ func (*GlobalSingleResponse) Descriptor() ([]byte, []int) {
 	return file_common_types_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GlobalSingleResponse) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
-}
-
-func (x *GlobalSingleResponse) GetStatusCode() string {
-	if x != nil {
-		return x.StatusCode
-	}
-	return ""
-}
-
 func (x *GlobalSingleResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
@@ -221,82 +221,6 @@ func (x *GlobalSingleResponse) GetMessage() string {
 }
 
 func (x *GlobalSingleResponse) GetData() *any1.Any {
-	if x != nil {
-		return x.Data
-	}
-	return nil
-}
-
-type GlobalListDataResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
-	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	OrderDir      string                 `protobuf:"bytes,3,opt,name=orderDir,proto3" json:"orderDir,omitempty"`
-	OrderBy       string                 `protobuf:"bytes,4,opt,name=orderBy,proto3" json:"orderBy,omitempty"`
-	Data          []*any1.Any            `protobuf:"bytes,5,rep,name=data,proto3" json:"data,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GlobalListDataResponse) Reset() {
-	*x = GlobalListDataResponse{}
-	mi := &file_common_types_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GlobalListDataResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GlobalListDataResponse) ProtoMessage() {}
-
-func (x *GlobalListDataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_common_types_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GlobalListDataResponse.ProtoReflect.Descriptor instead.
-func (*GlobalListDataResponse) Descriptor() ([]byte, []int) {
-	return file_common_types_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *GlobalListDataResponse) GetPage() int32 {
-	if x != nil {
-		return x.Page
-	}
-	return 0
-}
-
-func (x *GlobalListDataResponse) GetLimit() int32 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
-func (x *GlobalListDataResponse) GetOrderDir() string {
-	if x != nil {
-		return x.OrderDir
-	}
-	return ""
-}
-
-func (x *GlobalListDataResponse) GetOrderBy() string {
-	if x != nil {
-		return x.OrderBy
-	}
-	return ""
-}
-
-func (x *GlobalListDataResponse) GetData() []*any1.Any {
 	if x != nil {
 		return x.Data
 	}
@@ -315,7 +239,7 @@ type ResponseMetadata struct {
 
 func (x *ResponseMetadata) Reset() {
 	*x = ResponseMetadata{}
-	mi := &file_common_types_proto_msgTypes[4]
+	mi := &file_common_types_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -327,7 +251,7 @@ func (x *ResponseMetadata) String() string {
 func (*ResponseMetadata) ProtoMessage() {}
 
 func (x *ResponseMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_common_types_proto_msgTypes[4]
+	mi := &file_common_types_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -340,7 +264,7 @@ func (x *ResponseMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResponseMetadata.ProtoReflect.Descriptor instead.
 func (*ResponseMetadata) Descriptor() ([]byte, []int) {
-	return file_common_types_proto_rawDescGZIP(), []int{4}
+	return file_common_types_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ResponseMetadata) GetPage() int32 {
@@ -380,27 +304,17 @@ const file_common_types_proto_rawDesc = "" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x1a\n" +
 	"\borderDir\x18\x03 \x01(\tR\borderDir\x12\x18\n" +
-	"\aorderBy\x18\x04 \x01(\tR\aorderBy\"\x9a\x01\n" +
-	"\x12GlobalListResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\tR\x06status\x12\x1e\n" +
-	"\n" +
-	"statusCode\x18\x02 \x01(\tR\n" +
-	"statusCode\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage\x122\n" +
-	"\x04data\x18\x04 \x01(\v2\x1e.common.GlobalListDataResponseR\x04data\"\x92\x01\n" +
-	"\x14GlobalSingleResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\tR\x06status\x12\x1e\n" +
-	"\n" +
-	"statusCode\x18\x02 \x01(\tR\n" +
-	"statusCode\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage\x12(\n" +
-	"\x04data\x18\x04 \x01(\v2\x14.google.protobuf.AnyR\x04data\"\xa2\x01\n" +
-	"\x16GlobalListDataResponse\x12\x12\n" +
-	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x1a\n" +
-	"\borderDir\x18\x03 \x01(\tR\borderDir\x12\x18\n" +
-	"\aorderBy\x18\x04 \x01(\tR\aorderBy\x12(\n" +
-	"\x04data\x18\x05 \x03(\v2\x14.google.protobuf.AnyR\x04data\"r\n" +
+	"\aorderBy\x18\x04 \x01(\tR\aorderBy\"\xb8\x01\n" +
+	"\x12GlobalListResponse\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12\x12\n" +
+	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x1a\n" +
+	"\borderDir\x18\x04 \x01(\tR\borderDir\x12\x18\n" +
+	"\aorderBy\x18\x05 \x01(\tR\aorderBy\x12(\n" +
+	"\x04data\x18\x06 \x03(\v2\x14.google.protobuf.AnyR\x04data\"Z\n" +
+	"\x14GlobalSingleResponse\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12(\n" +
+	"\x04data\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\x04data\"r\n" +
 	"\x10ResponseMetadata\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x1a\n" +
@@ -419,24 +333,22 @@ func file_common_types_proto_rawDescGZIP() []byte {
 	return file_common_types_proto_rawDescData
 }
 
-var file_common_types_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_common_types_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_common_types_proto_goTypes = []any{
-	(*GlobalListDataRequest)(nil),  // 0: common.GlobalListDataRequest
-	(*GlobalListResponse)(nil),     // 1: common.GlobalListResponse
-	(*GlobalSingleResponse)(nil),   // 2: common.GlobalSingleResponse
-	(*GlobalListDataResponse)(nil), // 3: common.GlobalListDataResponse
-	(*ResponseMetadata)(nil),       // 4: common.ResponseMetadata
-	(*any1.Any)(nil),               // 5: google.protobuf.Any
+	(*GlobalListDataRequest)(nil), // 0: common.GlobalListDataRequest
+	(*GlobalListResponse)(nil),    // 1: common.GlobalListResponse
+	(*GlobalSingleResponse)(nil),  // 2: common.GlobalSingleResponse
+	(*ResponseMetadata)(nil),      // 3: common.ResponseMetadata
+	(*any1.Any)(nil),              // 4: google.protobuf.Any
 }
 var file_common_types_proto_depIdxs = []int32{
-	3, // 0: common.GlobalListResponse.data:type_name -> common.GlobalListDataResponse
-	5, // 1: common.GlobalSingleResponse.data:type_name -> google.protobuf.Any
-	5, // 2: common.GlobalListDataResponse.data:type_name -> google.protobuf.Any
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	4, // 0: common.GlobalListResponse.data:type_name -> google.protobuf.Any
+	4, // 1: common.GlobalSingleResponse.data:type_name -> google.protobuf.Any
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_common_types_proto_init() }
@@ -450,7 +362,7 @@ func file_common_types_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_types_proto_rawDesc), len(file_common_types_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

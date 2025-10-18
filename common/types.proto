@@ -16,26 +16,19 @@ message GlobalListDataRequest {
 }
 
 message GlobalListResponse{
-  string status = 1;
-  string statusCode = 2;
-  string message = 3;
-  GlobalListDataResponse data = 4;
+  string message = 1;
+  int32 page = 2;
+  int32 limit = 3;
+  string orderDir = 4;
+  string orderBy = 5;
+  repeated google.protobuf.Any data = 6;
 }
 
 message GlobalSingleResponse{
-  string status = 1;
-  string statusCode = 2;
-  string message = 3;
-  google.protobuf.Any data = 4;
+  string message = 1;
+  google.protobuf.Any data = 2;
 }
 
-message GlobalListDataResponse {
-  int32 page = 1;
-  int32 limit = 2;
-  string orderDir = 3;
-  string orderBy = 4;
-  repeated google.protobuf.Any data = 5;
-}
 
 message ResponseMetadata {
   int32 page = 1;
