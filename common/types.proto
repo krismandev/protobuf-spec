@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-import "google/protobuf/any.proto";
-
 package common;
 
 
@@ -19,13 +17,14 @@ message GlobalListResponse{
   string message = 1;
   int32 page = 2;
   int32 limit = 3;
-  string orderDir = 4;
-  string orderBy = 5;
+  int32 totalData = 4;
+  int32 totalPage = 5;
+  string orderDir = 6;
+  string orderBy = 7;
 }
 
 message GlobalSingleResponse{
   string message = 1;
-  google.protobuf.Any data = 2;
 }
 
 
