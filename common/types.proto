@@ -21,7 +21,6 @@ message GlobalListResponse{
   int32 limit = 3;
   string orderDir = 4;
   string orderBy = 5;
-  repeated google.protobuf.Any data = 6;
 }
 
 message GlobalSingleResponse{

@@ -16,6 +16,7 @@ message Product {
     double price = 8;
     string created_at = 9;
     string updated_at = 10;
+    bool is_deleted = 11;
 
 }
 
@@ -25,8 +26,29 @@ message GetProductsRequest {
     string name = 4;
     string owner_id = 5;
 }
+
+message  CreateProductRequest{
+    Product product = 1;
+}
+
+message  UpdateProductRequest{
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string owner_type = 4;
+    string owner_id = 5;
+    string featured_image = 6;
+    string has_variants = 7;
+    double price = 8;
+    string updated_at = 9;
+}
+
+message DeleteProductRequest{
+    string id = 1;
+}
 message GetProductsResponse {
     common.GlobalListResponse globalListResponse = 1;
+    repeated Product products = 2;
 }
 
 service ProductService {

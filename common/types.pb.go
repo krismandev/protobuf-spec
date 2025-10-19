@@ -98,7 +98,6 @@ type GlobalListResponse struct {
 	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	OrderDir      string                 `protobuf:"bytes,4,opt,name=orderDir,proto3" json:"orderDir,omitempty"`
 	OrderBy       string                 `protobuf:"bytes,5,opt,name=orderBy,proto3" json:"orderBy,omitempty"`
-	Data          []*any1.Any            `protobuf:"bytes,6,rep,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -166,13 +165,6 @@ func (x *GlobalListResponse) GetOrderBy() string {
 		return x.OrderBy
 	}
 	return ""
-}
-
-func (x *GlobalListResponse) GetData() []*any1.Any {
-	if x != nil {
-		return x.Data
-	}
-	return nil
 }
 
 type GlobalSingleResponse struct {
@@ -304,14 +296,13 @@ const file_common_types_proto_rawDesc = "" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x1a\n" +
 	"\borderDir\x18\x03 \x01(\tR\borderDir\x12\x18\n" +
-	"\aorderBy\x18\x04 \x01(\tR\aorderBy\"\xb8\x01\n" +
+	"\aorderBy\x18\x04 \x01(\tR\aorderBy\"\x8e\x01\n" +
 	"\x12GlobalListResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x1a\n" +
 	"\borderDir\x18\x04 \x01(\tR\borderDir\x12\x18\n" +
-	"\aorderBy\x18\x05 \x01(\tR\aorderBy\x12(\n" +
-	"\x04data\x18\x06 \x03(\v2\x14.google.protobuf.AnyR\x04data\"Z\n" +
+	"\aorderBy\x18\x05 \x01(\tR\aorderBy\"Z\n" +
 	"\x14GlobalSingleResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12(\n" +
 	"\x04data\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\x04data\"r\n" +
@@ -342,13 +333,12 @@ var file_common_types_proto_goTypes = []any{
 	(*any1.Any)(nil),              // 4: google.protobuf.Any
 }
 var file_common_types_proto_depIdxs = []int32{
-	4, // 0: common.GlobalListResponse.data:type_name -> google.protobuf.Any
-	4, // 1: common.GlobalSingleResponse.data:type_name -> google.protobuf.Any
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	4, // 0: common.GlobalSingleResponse.data:type_name -> google.protobuf.Any
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_common_types_proto_init() }
