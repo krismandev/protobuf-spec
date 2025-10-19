@@ -32,6 +32,8 @@ message GlobalSingleResponse{
 message ResponseMetadata {
   int32 page = 1;
   int32 limit = 2;
-  string orderDir = 3;
-  string orderBy = 4;
+  int32 totalData = 3;
+  int32 totalPage = 4;
+  string orderDir = 5;
+  string orderBy = 6;
 }

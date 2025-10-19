@@ -223,8 +223,10 @@ type ResponseMetadata struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	OrderDir      string                 `protobuf:"bytes,3,opt,name=orderDir,proto3" json:"orderDir,omitempty"`
-	OrderBy       string                 `protobuf:"bytes,4,opt,name=orderBy,proto3" json:"orderBy,omitempty"`
+	TotalData     int32                  `protobuf:"varint,3,opt,name=totalData,proto3" json:"totalData,omitempty"`
+	TotalPage     int32                  `protobuf:"varint,4,opt,name=totalPage,proto3" json:"totalPage,omitempty"`
+	OrderDir      string                 `protobuf:"bytes,5,opt,name=orderDir,proto3" json:"orderDir,omitempty"`
+	OrderBy       string                 `protobuf:"bytes,6,opt,name=orderBy,proto3" json:"orderBy,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -273,6 +275,20 @@ func (x *ResponseMetadata) GetLimit() int32 {
 	return 0
 }
 
+func (x *ResponseMetadata) GetTotalData() int32 {
+	if x != nil {
+		return x.TotalData
+	}
+	return 0
+}
+
+func (x *ResponseMetadata) GetTotalPage() int32 {
+	if x != nil {
+		return x.TotalPage
+	}
+	return 0
+}
+
 func (x *ResponseMetadata) GetOrderDir() string {
 	if x != nil {
 		return x.OrderDir
@@ -305,12 +321,14 @@ const file_common_types_proto_rawDesc = "" +
 	"\aorderBy\x18\x05 \x01(\tR\aorderBy\"Z\n" +
 	"\x14GlobalSingleResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12(\n" +
-	"\x04data\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\x04data\"r\n" +
+	"\x04data\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\x04data\"\xae\x01\n" +
 	"\x10ResponseMetadata\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x1a\n" +
-	"\borderDir\x18\x03 \x01(\tR\borderDir\x12\x18\n" +
-	"\aorderBy\x18\x04 \x01(\tR\aorderByB5Z3github.com/krismandev/protobuf-spec/common;commonpbb\x06proto3"
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x1c\n" +
+	"\ttotalData\x18\x03 \x01(\x05R\ttotalData\x12\x1c\n" +
+	"\ttotalPage\x18\x04 \x01(\x05R\ttotalPage\x12\x1a\n" +
+	"\borderDir\x18\x05 \x01(\tR\borderDir\x12\x18\n" +
+	"\aorderBy\x18\x06 \x01(\tR\aorderByB5Z3github.com/krismandev/protobuf-spec/common;commonpbb\x06proto3"
 
 var (
 	file_common_types_proto_rawDescOnce sync.Once
