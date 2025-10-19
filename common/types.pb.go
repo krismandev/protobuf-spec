@@ -7,7 +7,6 @@
 package commonpb
 
 import (
-	any1 "github.com/golang/protobuf/ptypes/any"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -96,8 +95,10 @@ type GlobalListResponse struct {
 	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
 	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
-	OrderDir      string                 `protobuf:"bytes,4,opt,name=orderDir,proto3" json:"orderDir,omitempty"`
-	OrderBy       string                 `protobuf:"bytes,5,opt,name=orderBy,proto3" json:"orderBy,omitempty"`
+	TotalData     int32                  `protobuf:"varint,4,opt,name=totalData,proto3" json:"totalData,omitempty"`
+	TotalPage     int32                  `protobuf:"varint,5,opt,name=totalPage,proto3" json:"totalPage,omitempty"`
+	OrderDir      string                 `protobuf:"bytes,6,opt,name=orderDir,proto3" json:"orderDir,omitempty"`
+	OrderBy       string                 `protobuf:"bytes,7,opt,name=orderBy,proto3" json:"orderBy,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -153,6 +154,20 @@ func (x *GlobalListResponse) GetLimit() int32 {
 	return 0
 }
 
+func (x *GlobalListResponse) GetTotalData() int32 {
+	if x != nil {
+		return x.TotalData
+	}
+	return 0
+}
+
+func (x *GlobalListResponse) GetTotalPage() int32 {
+	if x != nil {
+		return x.TotalPage
+	}
+	return 0
+}
+
 func (x *GlobalListResponse) GetOrderDir() string {
 	if x != nil {
 		return x.OrderDir
@@ -170,7 +185,6 @@ func (x *GlobalListResponse) GetOrderBy() string {
 type GlobalSingleResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data          *any1.Any              `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -210,13 +224,6 @@ func (x *GlobalSingleResponse) GetMessage() string {
 		return x.Message
 	}
 	return ""
-}
-
-func (x *GlobalSingleResponse) GetData() *any1.Any {
-	if x != nil {
-		return x.Data
-	}
-	return nil
 }
 
 type ResponseMetadata struct {
@@ -307,21 +314,22 @@ var File_common_types_proto protoreflect.FileDescriptor
 
 const file_common_types_proto_rawDesc = "" +
 	"\n" +
-	"\x12common/types.proto\x12\x06common\x1a\x19google/protobuf/any.proto\"w\n" +
+	"\x12common/types.proto\x12\x06common\"w\n" +
 	"\x15GlobalListDataRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x1a\n" +
 	"\borderDir\x18\x03 \x01(\tR\borderDir\x12\x18\n" +
-	"\aorderBy\x18\x04 \x01(\tR\aorderBy\"\x8e\x01\n" +
+	"\aorderBy\x18\x04 \x01(\tR\aorderBy\"\xca\x01\n" +
 	"\x12GlobalListResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x14\n" +
-	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x1a\n" +
-	"\borderDir\x18\x04 \x01(\tR\borderDir\x12\x18\n" +
-	"\aorderBy\x18\x05 \x01(\tR\aorderBy\"Z\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x1c\n" +
+	"\ttotalData\x18\x04 \x01(\x05R\ttotalData\x12\x1c\n" +
+	"\ttotalPage\x18\x05 \x01(\x05R\ttotalPage\x12\x1a\n" +
+	"\borderDir\x18\x06 \x01(\tR\borderDir\x12\x18\n" +
+	"\aorderBy\x18\a \x01(\tR\aorderBy\"0\n" +
 	"\x14GlobalSingleResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\x12(\n" +
-	"\x04data\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\x04data\"\xae\x01\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"\xae\x01\n" +
 	"\x10ResponseMetadata\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x1c\n" +
@@ -348,15 +356,13 @@ var file_common_types_proto_goTypes = []any{
 	(*GlobalListResponse)(nil),    // 1: common.GlobalListResponse
 	(*GlobalSingleResponse)(nil),  // 2: common.GlobalSingleResponse
 	(*ResponseMetadata)(nil),      // 3: common.ResponseMetadata
-	(*any1.Any)(nil),              // 4: google.protobuf.Any
 }
 var file_common_types_proto_depIdxs = []int32{
-	4, // 0: common.GlobalSingleResponse.data:type_name -> google.protobuf.Any
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0, // [0:0] is the sub-list for method output_type
+	0, // [0:0] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_common_types_proto_init() }
